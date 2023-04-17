@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../templates/head'); %>
+  </head>
+  <body>
+    <header><%- include('../templates/header'); %></header>
+
+    <main>
+      <h1 style="color: red">chat Page</h1>
+      <ul id="messages">
+        sqdsqdq
+      </ul>
+      <form id="chat-form">
+        <input id="message-input" type="text" autocomplete="off" />
+        <button>Send</button>
+      </form>
+    </main>
+    <footer><%- include('../templates/footer'); %></footer>
+  </body>
+ 
+  <script>
+    var socket = io();
+
+    const form = document.querySelector("#chat-form");
+    const input = document.querySelector("#message-input");
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const message = input.value.trim();
+      if (message) {
+       
+        socket.emit("chat message", message);
+        input.value = "";
+      }
+    });
+
+    socket.on("chat message", (msg) => {
+      const messages = document.querySelector("#messages");
+      const li = document.createElement("li");
+      li.textContent = msg;
+      messages.appendChild(li);
+    });
+  </script>
+</html>

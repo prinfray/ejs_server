@@ -1,5 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/">EJS Is Fun</a>
+  <a class="navbar-brand" href="/">
+    <% if (session.loggedin && session.username === 'admin') { %>
+      Bienvenue <%= session.username %> !
+    <% } %>
+    
+  </a>
   <ul class="navbar-nav mr-auto">
     <li class="nav-item">
       <a class="nav-link" href="/munitions">Munitions</a>
@@ -16,5 +21,17 @@
     <li class="nav-item">
       <a class="nav-link" href="/boss">Boss</a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/chat">Chat</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/login">Login</a>
+    </li>
+    <% if (session) { %>
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">Déconnexion</a>
+      </li>
+    <% } %>
+    
   </ul>
 </nav>
