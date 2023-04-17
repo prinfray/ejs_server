@@ -73,10 +73,9 @@ router.get("/boss", (req, res) => {
 router.get("/cartes", (req, res) => {
   res.render("cartes");
 });
-app.get('/cartes/:num', function(req, res) {
+router.get('/cartes/:num', function(req, res) {
   const cartesNum = req.params.num;
-  // ... traiter la requête ...
-  res.render('cartes', { num: cartesNum });
+  res.render('cartesNum', { num: cartesNum });
 });
 router.get("/marchands", (req, res) => {
   res.render("marchands");
